@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>VIRTZ - Loja de Moda Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo"><i class="fas fa-gem"></i> <span>VIRTZ</span></div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div class="menu-toggle-content">
+                    <span class="menu-bars"><i class="fas fa-bars"></i></span>
+                </div>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <div class="mobile-flags">
+                    <span class="flag-icon active" onclick="event.stopPropagation(); changeLanguage('pt')" title="Português">🇧🇷</span>
+                    <span class="flag-icon" onclick="event.stopPropagation(); changeLanguage('es')" title="Español">🇪🇸</span>
+                    <span class="flag-icon" onclick="event.stopPropagation(); changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+                <li><a href="#lancamentos" data-key="catalog">Catálogo</a></li>
+                <li><a href="#favoritos" data-key="favorites">Favoritos</a></li>
+                <li><a href="#app" data-key="downloadApp">Baixar App</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <div class="lang-selector">
+                    <span class="flag-icon active" onclick="changeLanguage('pt')" title="Português">🇧🇷</span>
+                    <span class="flag-icon" onclick="changeLanguage('es')" title="Español">🇪🇸</span>
+                    <span class="flag-icon" onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                </div>
+                <div class="cart-icon" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCounter">0</span>
+                </div>
+                <a href="#" class="signup-btn" data-key="signup">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content fade-in-up">
+                <h1 data-key="heroTitle">Vamos <br>Explorar <br><span>Roupas</span> <br>Únicas.</h1>
+                <p data-key="heroSubtitle">Viva a moda influente e inovadora!</p>
+                <button class="black-btn" onclick="addToCart('Roupas Únicas', 100)" data-key="buyNow">Compre Agora</button>
+            </div>
+            <div class="hero-image fade-in-up delay-1">
+                <img src="img/img1.png" alt="Modelo de Moda">
+            </div>
+        </section>
+
+        <!-- BRAND STRIP -->
+        <section class="brand-strip">
+            <div class="brand-track">
+                <span class="brand-item"><i class="fab fa-h&m"></i> H&M</span>
+                <span class="brand-item">OBEY</span>
+                <span class="brand-item"><i class="fas fa-shopping-bag"></i> shopify</span>
+                <span class="brand-item">LACOSTE</span>
+                <span class="brand-item">Levi's</span>
+                <span class="brand-item"><i class="fab fa-amazon"></i> amazon</span>
+                <span class="brand-item"><i class="fab fa-h&m"></i> H&M</span>
+                <span class="brand-item">OBEY</span>
+                <span class="brand-item"><i class="fas fa-shopping-bag"></i> shopify</span>
+                <span class="brand-item">LACOSTE</span>
+                <span class="brand-item">Levi's</span>
+                <span class="brand-item"><i class="fab fa-amazon"></i> amazon</span>
+            </div>
+        </section>
+
+        <!-- LANÇAMENTOS -->
+        <section id="lancamentos">
+            <h2 class="section-title"><span data-key="newReleases">NOVOS LANÇAMENTOS</span></h2>
+            <div class="products-grid">
+                <!-- Produto 1 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="product-img" alt="Moletom">
+                        <span class="product-badge" data-key="new">Novo</span>
+                        <div class="product-actions">
+                            <button onclick="addToCart('Moletons & Blusas', 89.90)" title="Adicionar ao Carrinho"><i class="fas fa-shopping-bag"></i></button>
+                            <button onclick="openModal('Moletons & Blusas', 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 89.90)" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-text">
+                            <h3 onclick="openModal('Moletons & Blusas', 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 89.90)" data-key="product1">Moletons & Blusas</h3>
+                            <div class="product-price">R$ 89,90 <span class="old-price">R$ 129,90</span></div>
+                            <p>✨ <span data-key="installments">5x sem juros</span></p>
+                        </div>
+                        <div class="arrow-link" onclick="openModal('Moletons & Blusas', 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 89.90)">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-hidden" onclick="addToCart('Moletons & Blusas', 89.90)" data-key="addToCart">Adicionar ao Carrinho</button>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="product-img" alt="Casacos">
+                        <span class="product-badge" data-key="highlight">Destaque</span>
+                        <div class="product-actions">
+                            <button onclick="addToCart('Casacos & Parkas', 149.90)" title="Adicionar ao Carrinho"><i class="fas fa-shopping-bag"></i></button>
+                            <button onclick="openModal('Casacos & Parkas', 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 149.90)" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-text">
+                            <h3 onclick="openModal('Casacos & Parkas', 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 149.90)" data-key="product2">Casacos & Parkas</h3>
+                            <div class="product-price">R$ 149,90 <span class="old-price">R$ 219,90</span></div>
+                            <p>🔥 <span data-key="discount">30% OFF</span></p>
+                        </div>
+                        <div class="arrow-link" onclick="openModal('Casacos & Parkas', 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 149.90)">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-hidden" onclick="addToCart('Casacos & Parkas', 149.90)" data-key="addToCart">Adicionar ao Carrinho</button>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="product-img" alt="Camisetas">
+                        <span class="product-badge" data-key="promotion">Promoção</span>
+                        <div class="product-actions">
+                            <button onclick="addToCart('Camisetas & T-Shirts', 49.90)" title="Adicionar ao Carrinho"><i class="fas fa-shopping-bag"></i></button>
+                            <button onclick="openModal('Camisetas & T-Shirts', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 49.90)" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-text">
+                            <h3 onclick="openModal('Camisetas & T-Shirts', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 49.90)" data-key="product3">Camisetas & T-Shirts</h3>
+                            <div class="product-price">R$ 49,90 <span class="old-price">R$ 79,90</span></div>
+                            <p>⭐ <span data-key="bestseller">Mais vendido</span></p>
+                        </div>
+                        <div class="arrow-link" onclick="openModal('Camisetas & T-Shirts', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 49.90)">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-hidden" onclick="addToCart('Camisetas & T-Shirts', 49.90)" data-key="addToCart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMO BANNER -->
+        <section class="promo-banner">
+            <div class="promo-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="promo-img" alt="Mulher na promoção">
+            </div>
+            <div class="promo-content">
+                <h2><span class="highlight-white" data-key="paymentPromo">PAGAMENTO</span><br><span data-key="promoTitle">PROMOÇÃO</span></h2>
+                <p class="sub-text" data-key="promoDesc">Gaste no mínimo R$100 e ganhe <strong>30% de desconto</strong> no seu próximo cupom de compra. Oferta imperdível!</p>
+                <p class="date-text" data-key="promoDate">1 de Junho - 10 de Junho de 2026 <br><span data-key="terms">*Termos e condições se aplicam</span></p>
+                <button class="promo-btn" onclick="addToCart('Promoção Especial Kit', 199.90)" data-key="buyNow">COMPRE AGORA</button>
+            </div>
+        </section>
+
+        <!-- FAVORITOS -->
+        <section id="favoritos">
+            <h2 class="section-title"><span data-key="favoritesTitle">Favoritos da Galera</span></h2>
+            <div class="favourites-grid">
+                <div class="fav-card">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Tendência">
+                    <div class="fav-info">
+                        <h3 data-key="trending">Tendência no Instagram</h3>
+                        <div class="arrow-link"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+                <div class="fav-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Até R$40">
+                    <div class="fav-info">
+                        <h3 data-key="upTo40">Tudo até R$40</h3>
+                        <div class="arrow-link"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APP -->
+        <section id="app" class="app-section">
+            <div class="app-text">
+                <h2 data-key="appTitle">BAIXE O APP E<br>GANHE O VALE!</h2>
+                <p data-key="appDesc">Ganhe 30% de desconto na primeira compra<br>usando o aplicativo VIRTZ agora.</p>
+                <div class="store-btns">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="app-mockup" alt="Mockup do App">
+        </section>
+    </main>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <h2 data-key="newsletterTitle">JUNTE-SE À COMUNIDADE E<br>GANHE PROMOÇÕES MENSAIS</h2>
+        <p data-key="newsletterDesc">Digite seu e-mail abaixo e faça parte da geração jovem e selvagem</p>
+        <div class="newsletter-form">
+            <input type="email" id="emailInput" placeholder="Adicione seu e-mail aqui" data-key="emailPlaceholder">
+            <button onclick="subscribeNewsletter()" data-key="send">ENVIAR</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-gem" style="color: #f6df57;"></i> VIRTZ</h4>
+                    <p data-key="footerDesc">Complete seu estilo com roupas incríveis da gente.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-key="company">Empresa</h4>
+                    <ul>
+                        <li><a href="#" data-key="about">Sobre Nós</a></li>
+                        <li><a href="#" data-key="contact">Contato</a></li>
+                        <li><a href="#" data-key="support">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-key="quickLinks">Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#" data-key="shareLocation">Compartilhar Localização</a></li>
+                        <li><a href="#" data-key="trackOrders">Rastrear Pedidos</a></li>
+                        <li><a href="#" data-key="sizeGuide">Guia de Tamanhos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-key="legal">Legal</h4>
+                    <ul>
+                        <li><a href="#" data-key="terms">Termos e Condições</a></li>
+                        <li><a href="#" data-key="privacy">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-key="copyright">&copy; 2026 VIRTZ. Todos os direitos reservados.</p>
+                <div>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+            <div class="footer-dev">
+                <span data-key="developed">Desenvolvido por</span> <a href="#" target="_blank">PabloG.Dev</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast">
+        <i class="fas fa-check-circle" style="color: #f6df57;"></i>
+        <span id="toastMessage">Item adicionado!</span>
+    </div>
+
+    <!-- CARRINHO -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> <span data-key="myCart">Meu Carrinho</span></h2>
+            <span class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart-msg" data-key="emptyCart">Seu carrinho está vazio.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-key="total">Total:</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+            <button class="black-btn" onclick="checkout()" data-key="checkout">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></span>
+            <div class="modal-img-container">
+                <img id="modalImg" src="" alt="Detalhes do Produto">
+            </div>
+            <div class="modal-details">
+                <h2 id="modalTitle">Nome do Produto</h2>
+                <div class="price" id="modalPrice">R$ 0,00</div>
+                <p data-key="modalDesc">Descrição detalhada do produto. Confeccionado com material de alta qualidade, perfeito para o seu dia a dia com estilo e conforto.</p>
+                <button class="black-btn" id="modalAddBtn" onclick="addFromModal()" data-key="addToCart">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHAT IA -->
+    <div class="chat-float" id="chatFloat">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3><i class="fas fa-robot"></i> <span data-key="assistant">Assistente VIRTZ</span> <span class="badge-status" data-key="online">Online</span></h3>
+                <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Digite sua dúvida..." data-key="chatPlaceholder" onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chat-toggle-btn" id="chatToggle" onclick="toggleChat()">
+            <i class="fas fa-comment-dots"></i> <span data-key="questions">Dúvidas?</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
