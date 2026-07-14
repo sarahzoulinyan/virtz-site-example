@@ -1729,24 +1729,103 @@ footer {
         width: 100%;
         padding: 20px;
     }
-    .chat-window {
-        width: 100%;
-        max-width: 100%;
-        right: 0;
-        bottom: 0;
-        max-height: 90vh;
-        border-radius: 24px 24px 0 0;
-    }
+
+    /* ============================================
+       CHAT RESPONSIVO MOBILE - SUBSTITUIÇÃO COMPLETA
+       ============================================ */
     .chat-float {
-        right: 12px;
-        bottom: 12px;
+        right: 0 !important;
+        bottom: 0 !important;
     }
+
+    .chat-window {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-width: 100vw !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0 !important;
+    }
+
+    .chat-header {
+        padding: 18px !important;
+        flex-shrink: 0;
+    }
+
+    .chat-header h3 {
+        font-size: 16px !important;
+    }
+
+    .chat-messages {
+        flex: 1 !important;
+        max-height: none !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
+        padding: 16px !important;
+    }
+
+    .chat-footer {
+        flex-shrink: 0;
+        padding: 12px !important;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .chat-footer input {
+        min-height: 50px !important;
+        font-size: 16px !important;
+    }
+
+    .chat-footer button {
+        min-height: 50px !important;
+        padding: 0 20px !important;
+    }
+
+    .bot-msg,
+    .user-msg {
+        max-width: 90% !important;
+        font-size: 14px !important;
+    }
+
     .chat-toggle-btn {
         padding: 14px 20px;
         font-size: 14px;
     }
 }
 
+/* ============================================
+   iPHONES MENORES (até 430px)
+   ============================================ */
+@media (max-width: 430px) {
+    .chat-header {
+        padding: 15px !important;
+    }
+
+    .chat-header h3 {
+        font-size: 15px !important;
+    }
+
+    .chat-footer {
+        gap: 8px !important;
+    }
+
+    .chat-footer button {
+        padding: 0 14px !important;
+        font-size: 12px !important;
+    }
+
+    .bot-msg,
+    .user-msg {
+        font-size: 13px !important;
+        padding: 12px 14px !important;
+    }
+}
+
+/* ============================================
+   RESPONSIVIDADE - DISPOSITIVOS MUITO PEQUENOS
+   ============================================ */
 @media (max-width: 480px) {
     .logo {
         font-size: 20px;
@@ -1791,13 +1870,7 @@ footer {
         width: 100%;
         right: -100%;
     }
-    .chat-window {
-        max-height: 80vh;
-    }
-    .chat-messages {
-        max-height: 220px;
-        min-height: 150px;
-    }
+
     .chat-toggle-btn span {
         display: none;
     }
