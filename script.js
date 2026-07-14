@@ -738,15 +738,15 @@ function sendMessage() {
 
 function toggleChat() {
     const chatWindow = document.getElementById('chatWindow');
+    const chatFloat = document.getElementById('chatFloat');
     const chatToggle = document.getElementById('chatToggle');
     const isOpen = chatWindow.classList.toggle('open');
 
     const t = translations[currentLang];
-    chatToggle.innerHTML = isOpen ?
-        '<i class="fas fa-times"></i> <span>' + t.close + '</span>' :
-        '<i class="fas fa-comment-dots"></i> <span>' + t.questions + '</span>';
 
     if (isOpen) {
+        chatFloat.classList.add('chat-open');
+        chatToggle.style.display = 'none';
         document.body.classList.add('no-scroll');
         document.getElementById('chatInput').focus();
         const chatMessages = document.getElementById('chatMessages');
@@ -775,6 +775,8 @@ function toggleChat() {
             }
         }
     } else {
+        chatFloat.classList.remove('chat-open');
+        chatToggle.style.display = 'flex';
         document.body.classList.remove('no-scroll');
     }
 }

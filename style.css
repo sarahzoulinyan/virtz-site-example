@@ -1731,11 +1731,38 @@ footer {
     }
 
     /* ============================================
-       CHAT RESPONSIVO MOBILE - SUBSTITUIÇÃO COMPLETA
+       CHAT RESPONSIVO MOBILE - CORRIGIDO
        ============================================ */
     .chat-float {
-        right: 0 !important;
-        bottom: 0 !important;
+        right: 20px !important;
+        bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+        z-index: 9995 !important;
+    }
+
+    .chat-toggle-btn {
+        width: 72px !important;
+        height: 72px !important;
+        border-radius: 20px !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: 0 6px 0 #000, 0 12px 40px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .chat-toggle-btn span {
+        display: none !important;
+    }
+
+    .chat-toggle-btn i {
+        font-size: 28px !important;
+        margin: 0 !important;
+    }
+
+    /* OCULTA O BOTÃO QUANDO O CHAT ESTÁ ABERTO */
+    .chat-window.open ~ .chat-toggle-btn,
+    .chat-float.chat-open .chat-toggle-btn {
+        display: none !important;
     }
 
     .chat-window {
@@ -1787,11 +1814,6 @@ footer {
     .user-msg {
         max-width: 90% !important;
         font-size: 14px !important;
-    }
-
-    .chat-toggle-btn {
-        padding: 14px 20px;
-        font-size: 14px;
     }
 }
 
