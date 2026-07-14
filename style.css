@@ -356,7 +356,7 @@ header {
     transform-style: preserve-3d;
     animation: float3D 6s ease-in-out infinite;
     transition: transform 0.3s ease;
-    box-shadow: 0 20px 40px #e5cc40;
+    box-shadow: 0 20px 40px rgba(230, 204, 64, 0.4);
 }
 
 .hero-image img:hover {
