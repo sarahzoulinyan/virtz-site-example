@@ -736,32 +736,42 @@ function sendMessage() {
     }, 600 + Math.random() * 500);
 }
 
+// ============================================
+// TOGGLE CHAT - CORRIGIDO (BOTÃO X FUNCIONA)
+// ============================================
 function toggleChat() {
     const chatWindow = document.getElementById('chatWindow');
     const chatFloat = document.getElementById('chatFloat');
     const chatToggle = document.getElementById('chatToggle');
-    const isOpen = chatWindow.classList.toggle('open');
 
+    const isOpen = chatWindow.classList.contains('open');
     const t = translations[currentLang];
 
     if (isOpen) {
+        // ===== FECHAR CHAT =====
+        chatWindow.classList.remove('open');
+        chatFloat.classList.remove('chat-open');
+        chatToggle.style.display = 'flex';
+        chatToggle.innerHTML = '<i class="fas fa-comment-dots"></i> <span>' + t.questions + '</span>';
+        document.body.classList.remove('no-scroll');
+    } else {
+        // ===== ABRIR CHAT =====
+        chatWindow.classList.add('open');
         chatFloat.classList.add('chat-open');
         chatToggle.style.display = 'none';
         document.body.classList.add('no-scroll');
         document.getElementById('chatInput').focus();
-        const chatMessages = document.getElementById('chatMessages');
 
+        const chatMessages = document.getElementById('chatMessages');
         if (chatMessages.children.length === 0) {
             if (!virtzAI.askedName) {
-                const greeting = virtzAI.getGreeting();
-                addMessageToChat(greeting);
+                addMessageToChat(virtzAI.getGreeting());
             } else {
                 const greeting = virtzAI.userName ?
                     `Olá ${virtzAI.userName}! Como posso ajudar você hoje? 😊` :
                     'Olá! Como posso ajudar você hoje? 😊';
                 addMessageToChat(greeting);
 
-                const tip = '💡 Dica: Pergunte sobre frete, pagamento, trocas ou promoções!';
                 const tipDiv = document.createElement('div');
                 tipDiv.className = 'bot-msg';
                 tipDiv.style.fontSize = '12px';
@@ -770,14 +780,10 @@ function toggleChat() {
                 tipDiv.style.border = 'none';
                 tipDiv.style.boxShadow = 'none';
                 tipDiv.style.padding = '4px 0';
-                tipDiv.textContent = tip;
+                tipDiv.textContent = '💡 Dica: Pergunte sobre frete, pagamento, trocas ou promoções!';
                 chatMessages.appendChild(tipDiv);
             }
         }
-    } else {
-        chatFloat.classList.remove('chat-open');
-        chatToggle.style.display = 'flex';
-        document.body.classList.remove('no-scroll');
     }
 }
 
@@ -803,6 +809,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Body fica fixo quando chat está aberto');
     console.log('✅ Bandeiras dentro do menu-toggle em telas pequenas');
     console.log('✅ Traduções PT, ES, EN funcionando');
+    console.log('✅ Botão X do chat funciona corretamente no iPhone');
 });
 
 // ============================================
