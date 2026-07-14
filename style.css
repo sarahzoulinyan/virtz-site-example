@@ -1539,6 +1539,43 @@ footer {
 }
 
 /* ============================================
+   CORREÇÕES PARA SAFARI
+   ============================================ */
+.chat-footer input {
+    -webkit-appearance: none;
+    appearance: none;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.chat-footer input:focus {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.chat-window {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+.chat-messages {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    will-change: transform;
+}
+
+.chat-toggle-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.chat-window.open {
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* ============================================
    RESPONSIVIDADE
    ============================================ */
 @media (max-width: 992px) {
@@ -1731,7 +1768,7 @@ footer {
     }
 
     /* ============================================
-       CHAT RESPONSIVO MOBILE - CORRIGIDO
+       CHAT RESPONSIVO MOBILE - CORRIGIDO SAFARI
        ============================================ */
     .chat-float {
         right: 20px !important;
@@ -1774,6 +1811,7 @@ footer {
         border-radius: 0 !important;
         border: none !important;
         margin: 0 !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 
     .chat-header {
@@ -1791,6 +1829,7 @@ footer {
         min-height: 0 !important;
         overflow-y: auto !important;
         padding: 16px !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 
     .chat-footer {
@@ -1802,6 +1841,8 @@ footer {
     .chat-footer input {
         min-height: 50px !important;
         font-size: 16px !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
     }
 
     .chat-footer button {

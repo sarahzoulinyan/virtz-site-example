@@ -696,15 +696,20 @@ function addMessageToChat(message, isUser = false) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+// ============================================
+// SEND MESSAGE - CORRIGIDO SAFARI
+// ============================================
 function sendMessage() {
     const chatInput = document.getElementById('chatInput');
     const userText = chatInput.value.trim();
     if (!userText) return;
 
+    const chatWindow = document.getElementById('chatWindow');
     const chatMessages = document.getElementById('chatMessages');
 
     addMessageToChat(userText, true);
     chatInput.value = '';
+    chatInput.blur();
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     const typingDiv = document.createElement('div');
@@ -733,16 +738,25 @@ function sendMessage() {
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 1200);
         }
+
+        if (chatWindow.classList.contains('open')) {
+            setTimeout(() => {
+                if (chatInput) chatInput.focus();
+            }, 300);
+        }
     }, 600 + Math.random() * 500);
 }
 
 // ============================================
-// TOGGLE CHAT - CORRIGIDO (BOTÃO X FUNCIONA)
+// TOGGLE CHAT - CORRIGIDO SAFARI
 // ============================================
+let chatInitialized = false;
+
 function toggleChat() {
     const chatWindow = document.getElementById('chatWindow');
     const chatFloat = document.getElementById('chatFloat');
     const chatToggle = document.getElementById('chatToggle');
+    const chatInput = document.getElementById('chatInput');
 
     const isOpen = chatWindow.classList.contains('open');
     const t = translations[currentLang];
@@ -754,16 +768,18 @@ function toggleChat() {
         chatToggle.style.display = 'flex';
         chatToggle.innerHTML = '<i class="fas fa-comment-dots"></i> <span>' + t.questions + '</span>';
         document.body.classList.remove('no-scroll');
+        if (chatInput) chatInput.blur();
     } else {
         // ===== ABRIR CHAT =====
         chatWindow.classList.add('open');
         chatFloat.classList.add('chat-open');
         chatToggle.style.display = 'none';
         document.body.classList.add('no-scroll');
-        document.getElementById('chatInput').focus();
 
-        const chatMessages = document.getElementById('chatMessages');
-        if (chatMessages.children.length === 0) {
+        if (!chatInitialized) {
+            chatInitialized = true;
+            const chatMessages = document.getElementById('chatMessages');
+            
             if (!virtzAI.askedName) {
                 addMessageToChat(virtzAI.getGreeting());
             } else {
@@ -784,6 +800,13 @@ function toggleChat() {
                 chatMessages.appendChild(tipDiv);
             }
         }
+
+        setTimeout(() => {
+            if (chatInput) {
+                chatInput.focus();
+                chatInput.select();
+            }
+        }, 100);
     }
 }
 
@@ -810,6 +833,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Bandeiras dentro do menu-toggle em telas pequenas');
     console.log('✅ Traduções PT, ES, EN funcionando');
     console.log('✅ Botão X do chat funciona corretamente no iPhone');
+    console.log('✅ Corrigido congelamento no Safari');
 });
 
 // ============================================
