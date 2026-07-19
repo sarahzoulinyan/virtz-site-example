@@ -12,19 +12,21 @@
     <!-- HEADER -->
     <header>
         <div class="container nav-container">
-            <div class="logo"><i class="fas fa-gem"></i> <span>VIRTZ</span></div>
+            <a href="#" class="logo">
+                <i class="fas fa-gem"></i>
+                <span>VIRTZ</span>
+                <span class="logo-dot"></span>
+            </a>
 
             <div class="menu-toggle" onclick="toggleMenu()">
-                <div class="menu-toggle-content">
-                    <span class="menu-bars"><i class="fas fa-bars"></i></span>
-                </div>
+                <i class="fas fa-bars"></i>
             </div>
 
             <ul class="nav-links" id="navLinks">
                 <div class="mobile-flags">
-                    <span class="flag-icon active" onclick="event.stopPropagation(); changeLanguage('pt')" title="Português">🇧🇷</span>
-                    <span class="flag-icon" onclick="event.stopPropagation(); changeLanguage('es')" title="Español">🇪🇸</span>
-                    <span class="flag-icon" onclick="event.stopPropagation(); changeLanguage('en')" title="English">🇺🇸</span>
+                    <span class="flag-icon active" data-lang="pt" onclick="event.stopPropagation(); changeLanguage('pt')" title="Português">🇧🇷</span>
+                    <span class="flag-icon" data-lang="es" onclick="event.stopPropagation(); changeLanguage('es')" title="Español">🇪🇸</span>
+                    <span class="flag-icon" data-lang="en" onclick="event.stopPropagation(); changeLanguage('en')" title="English">🇺🇸</span>
                 </div>
                 <li><a href="#lancamentos" data-key="catalog">Catálogo</a></li>
                 <li><a href="#favoritos" data-key="favorites">Favoritos</a></li>
@@ -33,9 +35,9 @@
 
             <div class="header-actions">
                 <div class="lang-selector">
-                    <span class="flag-icon active" onclick="changeLanguage('pt')" title="Português">🇧🇷</span>
-                    <span class="flag-icon" onclick="changeLanguage('es')" title="Español">🇪🇸</span>
-                    <span class="flag-icon" onclick="changeLanguage('en')" title="English">🇺🇸</span>
+                    <span class="flag-icon active" data-lang="pt" onclick="changeLanguage('pt')" title="Português">🇧🇷</span>
+                    <span class="flag-icon" data-lang="es" onclick="changeLanguage('es')" title="Español">🇪🇸</span>
+                    <span class="flag-icon" data-lang="en" onclick="changeLanguage('en')" title="English">🇺🇸</span>
                 </div>
                 <div class="cart-icon" onclick="openCart()">
                     <i class="fas fa-shopping-cart"></i>
@@ -49,13 +51,45 @@
     <main class="container">
         <!-- HERO -->
         <section class="hero">
+            <div class="hero-ring"></div>
+            
             <div class="hero-content fade-in-up">
-                <h1 data-key="heroTitle">Vamos <br>Explorar <br><span>Roupas</span> <br>Únicas.</h1>
+                <div class="hero-label">
+                    <span class="label-line"></span>
+                    Coleção 2026
+                </div>
+                
+                <h1 data-key="heroTitle">
+                    Vamos <br>Explorar <br><span>Roupas</span> <br>Únicas.
+                </h1>
+                
                 <p data-key="heroSubtitle">Viva a moda influente e inovadora!</p>
-                <button class="black-btn" onclick="addToCart('Roupas Únicas', 100)" data-key="buyNow">Compre Agora</button>
+                
+                <div class="hero-actions">
+                    <button class="black-btn" onclick="addToCart('Roupas Únicas', 100)" data-key="buyNow">
+                        <i class="fas fa-shopping-bag"></i> Compre Agora
+                    </button>
+                    <a href="#produtos" class="btn-outline" data-key="viewCollection">
+                        <i class="fas fa-arrow-right"></i> Ver Coleção
+                    </a>
+                </div>
+                
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Nova Coleção Disponível
+                </div>
             </div>
+            
             <div class="hero-image fade-in-up delay-1">
-                <img src="img/img1.png" alt="Modelo de Moda">
+                <img src="https://plus.unsplash.com/premium_photo-1732835069844-3b6003086630?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modelo de Moda">
+                
+                <div class="float-card">
+                    <div class="fc-icon"><i class="fas fa-star"></i></div>
+                    <div class="fc-content">
+                        <strong>4.9/5</strong>
+                        <span>Avaliações</span>
+                    </div>
+                </div>
             </div>
         </section>
 

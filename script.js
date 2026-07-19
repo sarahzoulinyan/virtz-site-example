@@ -59,6 +59,10 @@ const translations = {
         questions: 'Dúvidas?',
         chatPlaceholder: 'Digite sua dúvida...',
         close: 'Fechar',
+        viewCollection: 'Ver Coleção',
+        langPt: 'Português',
+        langEs: 'Español',
+        langEn: 'English',
     },
     es: {
         catalog: 'Catálogo',
@@ -117,6 +121,10 @@ const translations = {
         questions: '¿Dudas?',
         chatPlaceholder: 'Escribe tu duda...',
         close: 'Cerrar',
+        viewCollection: 'Ver Colección',
+        langPt: 'Portugués',
+        langEs: 'Español',
+        langEn: 'Inglés',
     },
     en: {
         catalog: 'Catalog',
@@ -175,15 +183,76 @@ const translations = {
         questions: 'Questions?',
         chatPlaceholder: 'Type your question...',
         close: 'Close',
+        viewCollection: 'View Collection',
+        langPt: 'Portuguese',
+        langEs: 'Spanish',
+        langEn: 'English',
     }
 };
 
 let currentLang = 'pt';
 
+// ============================================
+// FUNÇÃO PARA ATUALIZAR TEXTOS DO MENU MOBILE
+// ============================================
+function updateMobileMenuTexts() {
+    const t = translations[currentLang];
+    
+    // Atualiza os links do menu mobile
+    const navLinks = document.querySelectorAll('.nav-links a[data-key]');
+    navLinks.forEach(link => {
+        const key = link.getAttribute('data-key');
+        if (t[key]) {
+            link.textContent = t[key];
+        }
+    });
+    
+    // Atualiza o botão "Cadastre-se"
+    const signupBtn = document.querySelector('.signup-btn');
+    if (signupBtn && t.signup) {
+        signupBtn.textContent = t.signup;
+    }
+}
+
+// ============================================
+// ATUALIZAR TÍTULOS DAS FLAGS NO MENU MOBILE
+// ============================================
+function updateMobileFlags() {
+    const t = translations[currentLang];
+    
+    // Atualiza os títulos das flags no menu mobile
+    document.querySelectorAll('.mobile-flags .flag-icon').forEach(flag => {
+        const lang = flag.getAttribute('data-lang');
+        if (lang === 'pt') {
+            flag.setAttribute('title', t.langPt);
+        } else if (lang === 'es') {
+            flag.setAttribute('title', t.langEs);
+        } else if (lang === 'en') {
+            flag.setAttribute('title', t.langEn);
+        }
+    });
+    
+    // Atualiza também as flags do desktop
+    document.querySelectorAll('.lang-selector .flag-icon').forEach(flag => {
+        const lang = flag.getAttribute('data-lang');
+        if (lang === 'pt') {
+            flag.setAttribute('title', t.langPt);
+        } else if (lang === 'es') {
+            flag.setAttribute('title', t.langEs);
+        } else if (lang === 'en') {
+            flag.setAttribute('title', t.langEn);
+        }
+    });
+}
+
+// ============================================
+// FUNÇÃO PRINCIPAL DE TRADUÇÃO
+// ============================================
 function changeLanguage(lang) {
     currentLang = lang;
     const t = translations[lang];
 
+    // Atualiza elementos com data-key
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (t[key]) {
@@ -192,23 +261,37 @@ function changeLanguage(lang) {
             } else if (el.tagName === 'BUTTON' && el.getAttribute('data-key') !== '') {
                 el.textContent = t[key];
             } else {
-                el.innerHTML = t[key].replace(/\n/g, '<br>');
+                // Mantém o HTML para elementos que precisam de formatação
+                if (key === 'heroTitle' || key === 'appTitle' || key === 'newsletterTitle') {
+                    el.innerHTML = t[key].replace(/\n/g, '<br>');
+                } else {
+                    el.textContent = t[key];
+                }
             }
         }
     });
 
+    // ATUALIZA ESPECIFICAMENTE O MENU MOBILE
+    updateMobileMenuTexts();
+
+    // ATUALIZA OS TÍTULOS DAS FLAGS
+    updateMobileFlags();
+
+    // Atualiza flags (ativa a que corresponde ao idioma)
     document.querySelectorAll('.flag-icon').forEach(flag => {
-        flag.classList.toggle('active', flag.getAttribute('title').toLowerCase().includes(
-            lang === 'pt' ? 'português' : lang === 'es' ? 'español' : 'english'
-        ));
+        const langAttr = flag.getAttribute('data-lang');
+        flag.classList.toggle('active', langAttr === lang);
     });
 
+    // Atualiza carrinho
     const cartTitle = document.querySelector('#cartSidebar .cart-header h2 span');
     if (cartTitle) cartTitle.textContent = t.myCart;
 
+    // Atualiza modal
     const modalDesc = document.querySelector('#modalOverlay p[data-key="modalDesc"]');
     if (modalDesc) modalDesc.textContent = t.modalDesc;
 
+    // Atualiza chat
     const chatTitle = document.querySelector('.chat-header h3 span:first-child');
     if (chatTitle) chatTitle.textContent = t.assistant;
     const badgeStatus = document.querySelector('.badge-status');
@@ -218,8 +301,68 @@ function changeLanguage(lang) {
     const chatInput = document.getElementById('chatInput');
     if (chatInput) chatInput.placeholder = t.chatPlaceholder;
 
+    // Atualiza newsletter
     const emailInput = document.getElementById('emailInput');
     if (emailInput) emailInput.placeholder = t.emailPlaceholder;
+
+    // Atualiza botão "Compre Agora" do hero
+    const heroBtn = document.querySelector('.hero-content .black-btn');
+    if (heroBtn && t.buyNow) {
+        heroBtn.innerHTML = `<i class="fas fa-shopping-bag"></i> ${t.buyNow}`;
+    }
+
+    // Atualiza botão "Ver Coleção"
+    const viewCollectionBtn = document.querySelector('.hero-content .btn-outline');
+    if (viewCollectionBtn && t.viewCollection) {
+        viewCollectionBtn.innerHTML = `<i class="fas fa-arrow-right"></i> ${t.viewCollection}`;
+    }
+
+    // Atualiza botões "Adicionar ao Carrinho" dos produtos
+    document.querySelectorAll('.add-to-cart-hidden[data-key="addToCart"]').forEach(btn => {
+        btn.textContent = t.addToCart;
+    });
+
+    // Atualiza botão "Compre Agora" do promo banner
+    const promoBtn = document.querySelector('.promo-btn');
+    if (promoBtn && t.buyNow) {
+        promoBtn.textContent = t.buyNow;
+    }
+
+    // Atualiza botão do modal
+    const modalBtn = document.querySelector('#modalAddBtn');
+    if (modalBtn && t.addToCart) {
+        modalBtn.textContent = t.addToCart;
+    }
+
+    // Atualiza botão de checkout
+    const checkoutBtn = document.querySelector('.cart-footer .black-btn');
+    if (checkoutBtn && t.checkout) {
+        checkoutBtn.textContent = t.checkout;
+    }
+
+    // Atualiza badges dos produtos
+    document.querySelectorAll('.product-badge[data-key]').forEach(badge => {
+        const key = badge.getAttribute('data-key');
+        if (t[key]) {
+            badge.textContent = t[key];
+        }
+    });
+
+    // Atualiza textos dos produtos
+    document.querySelectorAll('.product-text h3[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (t[key]) {
+            el.textContent = t[key];
+        }
+    });
+
+    // Atualiza parágrafos dos produtos
+    document.querySelectorAll('.product-text p span[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (t[key]) {
+            el.textContent = t[key];
+        }
+    });
 }
 
 // ============================================
@@ -234,7 +377,7 @@ const toastMessage = document.getElementById('toastMessage');
 
 function closeChatIfOpen() {
     const chatWindow = document.getElementById('chatWindow');
-    if (chatWindow.classList.contains('open')) {
+    if (chatWindow && chatWindow.classList.contains('open')) {
         toggleChat();
     }
 }
@@ -379,6 +522,38 @@ function toggleMenu() {
     });
 }
 
+// ============================================
+// HEADER SCROLL EFFECT
+// ============================================
+function handleHeaderScroll() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+}
+
+// ============================================
+// FECHAR MENU AO ROLAR (mobile)
+// ============================================
+let lastScrollY = 0;
+window.addEventListener('scroll', function() {
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks && navLinks.classList.contains('active')) {
+        const currentScrollY = window.scrollY;
+        if (Math.abs(currentScrollY - lastScrollY) > 20) {
+            navLinks.classList.remove('active');
+        }
+        lastScrollY = currentScrollY;
+    }
+});
+
+// ============================================
+// OBSERVER PARA ANIMAÇÕES
+// ============================================
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -814,6 +989,10 @@ function toggleChat() {
 // INICIALIZAÇÃO
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
+    // Adiciona listener para scroll do header
+    window.addEventListener('scroll', handleHeaderScroll);
+
+    // Configura o chat input
     const chatInput = document.getElementById('chatInput');
     if (chatInput) {
         chatInput.addEventListener('keypress', function(e) {
@@ -824,16 +1003,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Inicializa com o idioma português
     changeLanguage('pt');
 
-    console.log('💡 VIRTZ AI 2.3 - TUDO CORRIGIDO!');
+    // Garante que o menu mobile seja traduzido
+    updateMobileMenuTexts();
+
+    // Garante que as flags sejam traduzidas
+    updateMobileFlags();
+
+    console.log('💡 VIRTZ AI 2.3 - COMPLETO!');
     console.log('✅ Z-index: Chat(9995) | Modal/Carrinho(9998) | Toast(9999)');
     console.log('✅ Chat fecha automaticamente ao abrir modal ou carrinho');
     console.log('✅ Body fica fixo quando chat está aberto');
     console.log('✅ Bandeiras dentro do menu-toggle em telas pequenas');
-    console.log('✅ Traduções PT, ES, EN funcionando');
+    console.log('✅ Traduções PT, ES, EN funcionando em todas as telas');
     console.log('✅ Botão X do chat funciona corretamente no iPhone');
     console.log('✅ Corrigido congelamento no Safari');
+    console.log('✅ Header com efeito de scroll');
+    console.log('✅ Menu mobile fecha ao rolar a página');
+    console.log('✅ Flags do menu mobile traduzidas corretamente');
 });
 
 // ============================================
@@ -852,3 +1041,5 @@ window.addFromModal = addFromModal;
 window.checkout = checkout;
 window.subscribeNewsletter = subscribeNewsletter;
 window.toggleMenu = toggleMenu;
+window.updateMobileMenuTexts = updateMobileMenuTexts;
+window.updateMobileFlags = updateMobileFlags;
