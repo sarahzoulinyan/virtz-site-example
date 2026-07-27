@@ -3,7 +3,7 @@
 > Loja de moda premium com carrinho interativo, suporte multilíngue e assistente virtual com IA.
 
 🌐 **Website:** https://www.pablogdev.com.br  
-🚀 **Demo:** https://pablog-7.github.io/virtz-fashion/
+🚀 **Demo:** https://pablog-7.github.io/virtz-site-exemplo/
 
 ---
 
