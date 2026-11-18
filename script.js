@@ -190,7 +190,7 @@ const translations = {
     }
 };
 
-let currentLang = 'pt';
+let currentLang = 'en';
 
 // ============================================
 // FUNÇÃO PARA ATUALIZAR TEXTOS DO MENU MOBILE
@@ -1004,7 +1004,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Inicializa com o idioma português
-    changeLanguage('pt');
+    changeLanguage('en');
 
     // Garante que o menu mobile seja traduzido
     updateMobileMenuTexts();
